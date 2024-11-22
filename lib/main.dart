@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => ListProvider())],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: primaryColor,

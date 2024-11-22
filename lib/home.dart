@@ -29,8 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: const Text("Second Screen")),
               const SizedBox(height: 5),
+              const Divider(),
               Expanded(
                 child: ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 50),
                     itemCount: listProviderModel.numbers.length,
                     itemBuilder: (context, i) => Container(
                         padding: const EdgeInsets.all(20),
