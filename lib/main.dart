@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_example/home.dart';
-import 'package:provider_example/list_provider.dart';
+import 'package:provider_example/providers/counter_provider.dart';
+import 'package:provider_example/providers/list_provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,24 +11,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Colors.green;
+    // By multi provider
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => ListProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (context) => ListProvider()),
+        ChangeNotifierProvider(create: (context) => CounterProvider())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: primaryColor,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: primaryColor,
-            secondary: Colors.deepOrangeAccent,
-          ),
-          appBarTheme: AppBarTheme(
-              backgroundColor: primaryColor, foregroundColor: Colors.white),
-          fontFamily: 'Georgia',
-        ),
+        theme: Theme.themeData,
+        home: const HomeScreen(),
+      ),
+    );
+
+    // By single provider
+    // ignore: dead_code
+    return ChangeNotifierProvider<ListProvider>(
+      create: (_) => ListProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: Theme.themeData,
         home: const HomeScreen(),
       ),
     );
   }
+}
+
+class Theme {
+  static const Color primaryColor = Colors.green;
+  static ThemeData themeData = ThemeData(
+    useMaterial3: false,
+    primarySwatch: Colors.blue,
+    primaryColor: Colors.blue,
+    fontFamily: 'Georgia',
+  );
 }
