@@ -19,7 +19,7 @@ When you have a single provider to manage your app's state.
 When you have a multiple provider to manage your app's state.
 #### Example:
 ```dart
-  return ChangeNotifierProvider<ModelClassName>( 
+  return MultiProvider( 
     providers: [
         ChangeNotifierProvider(create: (context) => <ModelClassName1>()),
         ChangeNotifierProvider(create: (context) => <ModelClassName2>()),
